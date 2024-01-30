@@ -19,6 +19,7 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
-        "material-dashboard": "^3.0.9"
+        "material-dashboard": "^3.0.9",
+        "primevue": "^3.47.2"
     }
 }
