@@ -3,6 +3,7 @@ import { ref } from "vue";
 import Footer from "./Components/Footer.vue";
 import Breadcrumbs from "./Components/Breadcumbs.vue";
 import VerticalMenu from "./Components/VerticalMenu.vue";
+import ProgressBar from "../Components/ProgressBar.vue";
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -10,10 +11,11 @@ const showingNavigationDropdown = ref(false);
 <template>
   <div>
     <div class="min-h-screen bg-gray-100">
-      <VerticalMenu />
+      <VerticalMenu @visible="deleteFilial($event)" />
       <main
         class="main-content position-relative max-height-vh-100 h-100 border-radius-lg"
       >
+        <ProgressBar :visible="visible" />
         <Breadcrumbs />
         <slot />
         <Footer />
@@ -21,3 +23,17 @@ const showingNavigationDropdown = ref(false);
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      visible: false,
+    };
+  },
+  methods: {
+    deleteFilial() {
+      this.visible = true;
+    },
+  },
+};
+</script>

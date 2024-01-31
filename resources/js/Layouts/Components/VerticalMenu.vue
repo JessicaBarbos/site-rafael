@@ -27,8 +27,12 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a
-            class="nav-link text-white active bg-gradient-primary"
-            href="../pages/dashboard.html"
+            class="nav-link text-white"
+            href="/dashboard"
+            @click="this.$emit('visible')"
+            :class="
+              $page.url === '/dashboard' ? 'active bg-gradient-primary' : ''
+            "
           >
             <div
               class="text-white text-center me-2 d-flex align-items-center justify-content-center"
@@ -39,7 +43,14 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">
+          <a
+            class="nav-link text-white"
+            href="/clientes"
+            @click="this.$emit('visible')"
+            :class="
+              $page.url === '/clientes' ? 'active bg-gradient-primary' : ''
+            "
+          >
             <div
               class="text-white text-center me-2 d-flex align-items-center justify-content-center"
             >
@@ -112,7 +123,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      url: "",
+    };
+  },
+};
 </script>
 
 <style>
