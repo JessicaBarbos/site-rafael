@@ -26,12 +26,23 @@ const columns = [
     <div class="py-1">
       <div class="card card-frame">
         <div class="card-body">
-          <DataTable :value="clientes" tableStyle="min-width: 50rem">
+          <DataTable
+            :value="clientes"
+            paginator
+            :rows="5"
+            :rowsPerPageOptions="[5, 10, 20, 50]"
+            tableStyle="min-width: 50rem"
+            paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+            currentPageReportTemplate="{first} de {last} até {totalRecords}"
+            :sortOrder="-1"
+            removableSort
+          >
             <Column
               v-for="col of columns"
               :key="col.field"
               :field="col.field"
               :header="col.header"
+              sortable
             ></Column>
           </DataTable>
         </div>
