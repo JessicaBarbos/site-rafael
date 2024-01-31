@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "material-dashboard": "^3.0.9",
+        "nprogress": "^0.2.0",
         "primevue": "^3.47.2"
     }
 }
