@@ -1,11 +1,8 @@
 <script setup>
-import { ref } from "vue";
 import Footer from "./Components/Footer.vue";
 import Breadcrumbs from "./Components/Breadcumbs.vue";
 import VerticalMenu from "./Components/VerticalMenu.vue";
 import ProgressBar from "../Components/ProgressBar.vue";
-
-const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
@@ -23,17 +20,3 @@ const showingNavigationDropdown = ref(false);
     </div>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      visible: false,
-    };
-  },
-  methods: {
-    deleteFilial() {
-      this.visible = true;
-    },
-  },
-};
-</script>

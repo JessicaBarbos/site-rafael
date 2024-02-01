@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClientController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +20,7 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('logout');
-
-Route::get('/login', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -36,6 +28,10 @@ Route::get('/login', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -46,11 +42,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::controller(ClientController::class)->group(function () {
-        Route::get('/clientes', 'index');
-        Route::get('/clientes/{id}', 'show');
-        Route::post('/clientes', 'store');
+    Route::prefix('/clientes')->group(function () {
+        Route::get('/', [ClientController::class, 'index'])->name('index');
+        Route::post('/', [ClientController::class, 'store']);
+        Route::delete('/{id}', [ClientController::class, 'destroy']);
+        Route::get('/{id}', [ClientController::class, 'show']);
     });
 });
+
+
 
 require __DIR__ . '/auth.php';
