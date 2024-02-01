@@ -1,8 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
-import DataTable from "primevue/datatable";
-import Column from "primevue/column";
 import ModalUser from "./modal/CreateUser.vue";
 
 defineProps({
@@ -32,34 +30,73 @@ const columns = [
             <div class="col-10"></div>
             <div class="col-2">
               <button
-                type="button"
-                class="btn bg-gradient-info d-flex justify-content-end"
+                class="btn bg-gradient-dark mb-0"
                 data-bs-toggle="modal"
                 data-bs-target="#ModalCliente"
               >
-                <i class="material-icons opacity-10">person_add</i>
+                <i class="material-icons text-sm opacity-10">add</i
+                >&nbsp;&nbsp;Novo Cliente
               </button>
             </div>
           </div>
-          <DataTable
-            :value="clientes"
-            paginator
-            :rows="5"
-            :rowsPerPageOptions="[10, 20, 50]"
-            tableStyle="min-width: 50rem"
-            paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-            currentPageReportTemplate="{first} de {last} até {totalRecords}"
-            :sortOrder="-1"
-            removableSort
-          >
-            <Column
-              v-for="col of columns"
-              :key="col.field"
-              :field="col.field"
-              :header="col.header"
-              sortable
-            ></Column>
-          </DataTable>
+          <div class="row mt-5">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th
+                      class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                    >
+                      Código
+                    </th>
+                    <th
+                      class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                    >
+                      Nome
+                    </th>
+                    <!-- <th
+                      class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                    >
+                      Ações
+                    </th> -->
+
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="cliente in clientes" :key="cliente.id">
+                    <td>
+                      <!-- <p class="text-xs font-weight-bold mb-0">Manager</p> -->
+                      <p class="text-xs text-secondary mb-0">
+                        {{ cliente.codigo }}
+                      </p>
+                    </td>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div></div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">{{ cliente.nome }}</h6>
+                          <p class="text-xs text-secondary mb-0">
+                            john@creative-tim.com
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <!-- <td class="align-middle">
+                      <a
+                        href="javascript:;"
+                        class="text-secondary font-weight-bold text-xs"
+                        data-toggle="tooltip"
+                        data-original-title="Edit user"
+                      >
+                        Edit
+                      </a>
+                    </td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>

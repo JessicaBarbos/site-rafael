@@ -1,86 +1,46 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title inertia>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <title>
+        Rafael Franchini
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    {{-- <link href="../assets/css/nucleo-icons.css" rel="stylesheet" /> --}}
+    {{-- <link href="../assets/css/nucleo-svg.css" rel="stylesheet" /> --}}
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-
+    {{-- <link href="../assets/css/nucleo-svg.css" rel="stylesheet" /> --}}
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-
     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/material-kit.css?v=3.0.4" rel="stylesheet" />
-
-    <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
-
-    <!-- Scripts -->
+    <link id="pagestyle" href="{{ url('/assets/css/material-dashboard.css') }}" rel="stylesheet" />
     @routes
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
     @inertiaHead
+
 </head>
 
-<body class="font-sans antialiased">
+<body class="g-sidenav-show bg-gray-100">
+
     @inertia
 
-    <footer class="footer position-absolute bottom-2 py-2 w-100">
-        <div class="container">
-            <div class="row align-items-center justify-content-lg-center">
-                <div class="col-12 col-md-6 my-auto">
-                    <div class="copyright text-center text-sm text-white text-lg-center">
-                        ©
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script>
-                        , feito com <i class="fa fa-heart" aria-hidden="true"></i> por
-                        <a href="https://www.creative-tim.com" class="font-weight-bold text-white"
-                            target="_blank">Jéssica Remédio</a>
-                        para uma web melhor.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-    <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="{{ url('/assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ url('/assets/js/core/bootstrap.min.js') }}"></script>
 
-    <!-- FALTA CARREGAR ESSES ARQUIVOS -->
-    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="../assets/js/plugins/chartjs.min.js"></script>
+    <!-- Plugin for the charts, full documentation here: https://www.chartjs.org/ -->
+    {{-- <script src="../assets/js/plugins/chartjs.min.js"></script>
+    <script src="../assets/js/plugins/Chart.extension.js"></script> --}}
 
-    <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
-    <script src="../assets/js/material-kit.min.js?v=3.0.4" type="text/javascript"></script>
-
-    <script>
-        var win = navigator.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
-            var options = {
-                damping: '0.5'
-            }
-            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-        }
-    </script>
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+    <script src="{{ url('/assets/js/material-dashboard.min.js') }}"></script>
 </body>
 
 </html>
