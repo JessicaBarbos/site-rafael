@@ -16,22 +16,23 @@
             Cadastrar Cliente
           </h5>
           <button
-            type="button"
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
-            style="background-color: gray; color: white"
           ></button>
+
+          <button
+            class="btn bg-gradient-dark btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <i class="material-icons text-sm opacity-10">close</i>
+          </button>
         </div>
         <div class="modal-body">
           <div class="row">
             <div class="d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
               <div class="card card-plain">
-                <div class="card-header">
-                  <p class="mb-0">
-                    Entre com e-mail e senha para adicionar o cliente
-                  </p>
-                </div>
                 <div class="card-body">
                   <form role="form">
                     <div class="input-group input-group-outline mb-3">
@@ -54,9 +55,9 @@
         </div>
         <div class="modal-footer">
           <button
-            type="button"
-            class="btn bg-gradient-info"
+            class="btn bg-gradient-secondary"
             data-bs-dismiss="modal"
+            aria-label="Close"
           >
             Fechar
           </button>
