@@ -7,6 +7,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ImovelController;
 
 
 /*
@@ -47,6 +48,16 @@ Route::middleware('auth')->group(function () {
         Route::post('/', [ClientController::class, 'store']);
         Route::delete('/{id}', [ClientController::class, 'destroy']);
         Route::get('/{id}', [ClientController::class, 'show']);
+    });
+
+    Route::prefix('/imoveis')->group(function () {
+        Route::get('/', [ImovelController::class, 'index'])->name('imovel.index');
+        Route::post('/', [ImovelController::class, 'store']);
+        Route::get('/novo', [ImovelController::class, 'new']);
+        Route::get('/edit/{id}', [ImovelController::class, 'edit']);
+        Route::patch('/{id}', [ImovelController::class, 'update'])->name('profile.update');
+        Route::delete('/{id}', [ImovelController::class, 'destroy']);
+        // Route::get('/{id}', [ImovelController::class, 'show']);
     });
 });
 
