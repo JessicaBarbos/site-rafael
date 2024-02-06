@@ -1,28 +1,31 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, useForm } from "@inertiajs/vue3";
-import { onMounted } from "vue";
+import { onMounted, defineProps } from "vue";
 
-const { imovel } = defineProps(["imovel"]);
-
+const props = defineProps({
+  imagePreview: { type: String, default: null },
+  imageUrl: { type: String, default: null },
+  imovel: String, // Define imovel prop here
+});
 const form = useForm({
-  id: imovel?.id,
-  codigo: imovel?.codigo,
-  nome: imovel?.nome,
-  tipo: imovel?.tipo,
-  descricao: imovel?.descricao,
-  cep: imovel?.cep,
-  estado: imovel?.estado,
-  cidade: imovel?.cidade,
-  bairro: imovel?.bairro,
-  endereco: imovel?.endereco,
-  numero: imovel?.numero,
-  telefone: imovel?.telefone,
-  excluido: imovel?.excluido,
-  id_user_create: imovel?.id_user_create,
-  id_user_update: imovel?.id_user_update,
-  created_at: imovel?.created_at,
-  updated_at: imovel?.updated_at,
+  id: props.imovel?.id,
+  codigo: props.imovel?.codigo,
+  nome: props.imovel?.nome,
+  tipo: props.imovel?.tipo,
+  descricao: props.imovel?.descricao,
+  cep: props.imovel?.cep,
+  estado: props.imovel?.estado,
+  cidade: props.imovel?.cidade,
+  bairro: props.imovel?.bairro,
+  endereco: props.imovel?.endereco,
+  numero: props.imovel?.numero,
+  telefone: props.imovel?.telefone,
+  excluido: props.imovel?.excluido,
+  id_user_create: props.imovel?.id_user_create,
+  id_user_update: props.imovel?.id_user_update,
+  created_at: props.imovel?.created_at,
+  updated_at: props.imovel?.updated_at,
 });
 
 onMounted(() => {
@@ -68,6 +71,22 @@ const submit = () => {
       {
         onFinish: resetForm,
       };
+  }
+};
+
+const openFileInput = () => {
+  this.$refs.fileInput.click();
+};
+
+const handleFileChange = (event) => {
+  const file = event.target.files[0];
+  this.formFuncionario.foto = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.imagePreview = e.target.result;
+    };
+    reader.readAsDataURL(file);
   }
 };
 </script>
@@ -146,6 +165,38 @@ const submit = () => {
                   </select>
                   <div class="invalid-feedback">
                     Por favor selecione o tipo.
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="media mb-2">
+                    <img
+                      v-if="fotoPerfil"
+                      :src="`data:image/jpeg;base64,${fotoPerfil}`"
+                      class="users-avatar-shadow rounded notranslate"
+                      alt="Imagem Perfil"
+                      height="90"
+                      width="90"
+                      style="cursor: pointer"
+                      @click="openFileInput"
+                    />
+                    <img
+                      v-else
+                      :src="imagePreview || imageUrl"
+                      class="users-avatar-shadow rounded notranslate"
+                      alt="Imagem Perfil"
+                      height="90"
+                      width="90"
+                      @click="openFileInput"
+                      style="cursor: pointer"
+                    />
+                    <input
+                      ref="fileInput"
+                      type="file"
+                      class="form-control"
+                      style="display: none"
+                      @change="handleFileChange"
+                      accept=".jpg, .jpeg, .png"
+                    />
                   </div>
                 </div>
 
